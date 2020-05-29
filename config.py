@@ -1,3 +1,5 @@
 EMAIL=""
 PASSWORD=""
 SUBJECT=""
+SMTP_ADRESS='smtp.office365.com'
+PORT=587

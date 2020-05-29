@@ -15,6 +15,8 @@ Before use you will have to edit the following files :
               * EMAIL is your email
               * PASSWORD is your email password
               * SUBJECT is the subject of your mail
+              * SMTP_ADRESS is the smtp adress of your mail provider
+              * PORT is the smtp port used by the smtp of your mail provider
 
 * dest_list.txt :
 
@@ -22,3 +24,6 @@ Before use you will have to edit the following files :
               /!\ One per line, no error handling is done /!\
               
  
+* mail_content.txt :
+
+              * In this file you must write the message you want to send

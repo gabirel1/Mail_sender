@@ -1,0 +1,4 @@
+Ceci est un email de test
+
+Lien vers le repo GitHub : https://github.com/gabirel1/Mail_sender
+
