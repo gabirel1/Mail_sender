@@ -4,6 +4,7 @@ import smtplib
 import config
 import email
 from email.mime.text import MIMEText
+from email.message import EmailMessage
 
 EMAIL=config.EMAIL
 PASSWORD=config.PASSWORD
@@ -21,17 +22,22 @@ def send_mail(to, text) :
     server.login(EMAIL, PASSWORD)
     print("logged in")
 
-    message = MIMEText(text)
+    message = EmailMessage()
+    message.set_content('test')
     message["From"] = EMAIL
     message["To"] = to
     message["Subject"] = SUBJECT
+    message.set_content(text, subtype='html')
+
     server.sendmail(EMAIL, to, message.as_string())
     print("Mail sucessfully sent")
+
     server.close()
+    print("server closed")
 
 def get_mail_content() :
     try :
-        file = open('mail_content.txt', 'r')
+        file = open('message.html')
     except :
         print("You must enter an existing file /!\ remember that we doesn't handle file content errors")
         exit(84)
