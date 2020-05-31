@@ -17,6 +17,7 @@ Before use you will have to edit the following files :
               * SUBJECT is the subject of your mail
               * SMTP_ADRESS is the smtp adress of your mail provider
               * PORT is the smtp port used by the smtp of your mail provider
+              * FILE is the path of the file you want to attach to your mail
 
 * dest_list.txt :
 

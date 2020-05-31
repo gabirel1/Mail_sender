@@ -5,12 +5,16 @@ import config
 import email
 from email.mime.text import MIMEText
 from email.message import EmailMessage
+from email.mime.multipart import MIMEMultipart
+from email.mime.base import MIMEBase
+from email import encoders
 
 EMAIL=config.EMAIL
 PASSWORD=config.PASSWORD
 SUBJECT=config.SUBJECT
 SMTP_ADRESS=config.SMTP_ADRESS
 PORT=config.PORT
+ATTACHED_FILE=config.FILE
 
 def send_mail(to, text) :
     server = smtplib.SMTP(SMTP_ADRESS, PORT)
@@ -22,12 +26,21 @@ def send_mail(to, text) :
     server.login(EMAIL, PASSWORD)
     print("logged in")
 
-    message = EmailMessage()
-    message.set_content('test')
+    message = MIMEMultipart()
     message["From"] = EMAIL
     message["To"] = to
     message["Subject"] = SUBJECT
-    message.set_content(text, subtype='html')
+    message.attach(MIMEText(text, 'html'))
+
+    if (ATTACHED_FILE != "") :
+        filename = ATTACHED_FILE
+        attachement = open(filename, 'rb')
+        part = MIMEBase('application', 'octet-stream')
+        part.set_payload((attachement).read())
+        encoders.encode_base64(part)
+        part.add_header('Content-Disposition', "attachement; filename = "+filename)
+        message.attach(part)
+        print("attachement file added")
 
     server.sendmail(EMAIL, to, message.as_string())
     print("Mail sucessfully sent")
