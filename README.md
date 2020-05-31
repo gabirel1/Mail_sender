@@ -25,6 +25,6 @@ Before use you will have to edit the following files :
               /!\ One per line, no error handling is done /!\
               
  
-* mail_content.txt :
+* message.html :
 
               * In this file you must write the message you want to send
